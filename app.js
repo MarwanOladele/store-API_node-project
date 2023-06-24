@@ -1,4 +1,5 @@
 require("dotenv").config();
+const getProductRoute = require("./models/product");
 
 const express = require("express");
 const app = express();
@@ -9,6 +10,7 @@ const notFoundMiddleware = require("./middleware/not-found");
 
 // connect DB
 const connectDB = require("./db/connect");
+app.use("/api/v1/products", getProductRoute);
 
 // middleware
 app.use(express.json());
