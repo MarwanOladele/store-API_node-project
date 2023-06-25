@@ -1,5 +1,7 @@
 require("dotenv").config();
-const getProductRoute = require("./models/product");
+require("express-async-errors");
+
+const getProductRoute = require("./routes/products");
 
 const express = require("express");
 const app = express();
@@ -7,7 +9,7 @@ const app = express();
 // asysc errors
 const errorHandlerMiddleware = require("./middleware/error-handler");
 const notFoundMiddleware = require("./middleware/not-found");
-
+ 
 // connect DB
 const connectDB = require("./db/connect");
 app.use("/api/v1/products", getProductRoute);
@@ -23,7 +25,7 @@ app.get("/", (req, res) => {
 app.use(errorHandlerMiddleware);
 app.use(notFoundMiddleware);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 const start = async () => {
   try {
